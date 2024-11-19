@@ -8,12 +8,12 @@ public class edades {
         for (int age : ages) {
         sum += age;
         }
-        for (int i = 0; i < length; i++)
+        for (int i = 0; i < length; i++){
             if (ages[i] < min)
                 min = ages[i];
-        for (int j = 0; j < length; j++)
-            if (ages[j] > max)
-                max = ages[j];
+            if (ages[i] > max)
+                max = ages[i];
+        }
         int dif = max - min;
         avg = sum / length;
         System.out.println("The average age is: " + avg);
