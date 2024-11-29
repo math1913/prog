@@ -20,7 +20,7 @@ public class Ejercicio1 {
                     mayor = matriz[i][j];
                 else if (matriz[i][j] == mayor)
                     contador++;
-                if (i == j)
+                if ((i == j) || (i == j - matriz.length - 1) || (i - matriz.length - 1 == j))
                     diagonal = diagonal + matriz[i][j];
                 if (j == matriz[i].length - 1)
                     ultFil = ultFil + matriz[i][j];
