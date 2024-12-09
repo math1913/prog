@@ -16,11 +16,13 @@ public class Ejercicio1 {
             for (int j = 1; j < matriz[i].length; j++) {
                 matriz[i][j] = (int)(Math.random() * 100);
                 tot = tot + matriz[i][j];
-                if (matriz[i][j] > mayor)
+                if (matriz[i][j] > mayor){
                     mayor = matriz[i][j];
+                    contador = 1;
+                }
                 else if (matriz[i][j] == mayor)
                     contador++;
-                if ((i == j) || (i == j - matriz.length - 1) || (i - matriz.length - 1 == j))
+                if ((i == j) || (i == j - matriz.length -1))
                     diagonal = diagonal + matriz[i][j];
                 if (j == matriz[i].length - 1)
                     ultFil = ultFil + matriz[i][j];
@@ -28,6 +30,7 @@ public class Ejercicio1 {
                     pares[topePares] = matriz[i][j];
                     topePares++;
                 }
+
                 boolean prime = true; 
                 for(int k = 2; k < Math.sqrt(matriz[i][j]); k++)
                     if (matriz[i][j] != 0)
@@ -40,15 +43,19 @@ public class Ejercicio1 {
                     topePrimos++;
                 }
             }
-        
+        System.out.println();
         System.out.println("Promedio " + tot/(matriz.length * matriz[0].length));
+        System.out.println();
         System.out.println("Mayor: " + mayor + ", cantidad de aparciciones: " + contador);
+        System.out.println();
         System.out.println("Suma diagonal: " + diagonal);
+        System.out.println();
         System.out.println("Suma ultima fila: " + ultFil);
+        System.out.println();
         System.out.println("Pares: ");
         for (int i = 0; i < topePares; i++)
             System.out.print(pares[i] + " ");
-        System.out.println();
+        System.out.println("\n");
         System.out.println("Primos: ");
         for (int i = 0; i < topePrimos; i++)
             System.out.print(primos[i] + " ");
