@@ -9,7 +9,7 @@ public class Ejercicio4 {
         if (vector[0] < vector[1]){
             segMenor = vector[1];
             menor= vector[0];
-        }
+        }        
         for (int i = 2; i < vector.length; i++){
             if (vector[i] < menor){
                 segMenor = menor;
