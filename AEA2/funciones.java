@@ -12,7 +12,7 @@ public class funciones {
             System.out.println("El valor máximo es: " + a);
         else if (b > a && b > c)
             System.out.println("El valor máximo es: " + b);
-        else
+        else 
             System.out.println("El valor máximo es: " + c);
     }
     public static int calcularMin(int a, int b, int c) {
@@ -21,7 +21,7 @@ public class funciones {
             min = a;
         else if (b < a && b < c) 
             min = b;
-        else 
+        else
             min = c; 
         return min;
     }   
