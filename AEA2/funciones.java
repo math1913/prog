@@ -9,11 +9,11 @@ public class funciones {
     }
     public static void calcularMax(int a, int b, int c) {
         if (a > b && a > c) 
-            System.out.println("El valor máximo es " + a);
+            System.out.println("El valor máximo es: " + a);
         else if (b > a && b > c)
-            System.out.println("El valor máximo es " + b);
+            System.out.println("El valor máximo es: " + b);
         else
-            System.out.println("El valor máximo es " + c);
+            System.out.println("El valor máximo es: " + c);
     }
     public static int calcularMin(int a, int b, int c) {
         int min;
