@@ -1,34 +1,86 @@
 import java.util.Scanner;
 public class registroTemps {
-
+    //ctes
     private static final int MAX_SEM = 52;
 
+    //var glob
+    private boolean fin = false;
     private int numTemps = 0;
-
     private float[] temperaturas = new float[MAX_SEM * 7];
-
     private int dia = 1;
-
     private int mes = 1;
 
     public static void main(String[] args) {
         registroTemps programa = new registroTemps();
         programa.iniciar();
     }
+
     public void iniciar() {
+        while(!fin) {
+            mostrarMenu();
+            tratarOpcion();
+        }
     }
+
     public void mostrarMenu() {
+        System.out.println("\nBienvenido al registro de temperaturas");
+        System.out.println("−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−");
+        System.out.println("[RT] Registrar temperaturas semanales.");
+        System.out.println("[MJ] Consultar temperatura mediana.");
+        System.out.println("[DF] Consultar diferencia maxima.");
+        System.out.println("[FI] Salir.");
+        System.out.print("Opción: ");
     }
+
     public void tratarOpcion() {
+        Scanner lector = new Scanner(System.in);
+        String opcion = lector.next();
+        if (opcion.equals("RT"))
+            registrarTemperaturasSemestrales();
+        else if (opcion.equals("MJ")) 
+            mostrarMedia();
+        else if (opcion.equals("DF"))
+            mostrarDiferencia();
+        else if (opcion.equals("FI")) 
+            fin = true;
+        else {
+            System.out.println("Opción no válida");
+        }
     }
+
     public void registrarTemperaturasSemestrales() {
+        if (numTemps + 7 >= temperaturas.length) 
+            System.out.println("No se puede registrar más de " + MAX_SEM + " temperaturas");
+        else {
+            leerTemperaturas();
+            incrementarFecha();
+        }
     }
+
     public void mostrarMedia() {
+        if (numTemps == 0)
+            System.out.println("No hay datos registrados");
+        else{
+            System.out.print("\nHasta hoy: ");
+            mostrarFecha();
+            System.out.print(" Media: ");
+            calcularMedia();
+            System.out.println(" grados.");
+        }
     }
+
     public void mostrarDiferencia() {
+        if (numTemps == 0)
+            System.out.println("No hay datos registrados");
+        else {
+            System.out.print("\nHasta hoy: ");
+            mostrarFecha();
+            System.out.print(" Diferencia: ");
+            calcularDiferencia();
+            System.out.println(" grados.");
+        }
     }
-    public void finalizar() {
-    }
+
     public void leerTemperaturas() {
         System.out.println("Escribe las temperaturas de esta semana:");
         Scanner lector = new Scanner(System.in);
@@ -43,6 +95,7 @@ public class registroTemps {
                 lector.next();
         }
     }
+
     public void incrementarFecha() {
         int diasEsteMes = 0;
         if (mes == 2)
@@ -59,6 +112,7 @@ public class registroTemps {
                 mes = 1;
         }   
     }
+
     public void mostrarFecha() {
         System.out.print(dia + " de ");
         switch(mes) {
@@ -108,8 +162,8 @@ public class registroTemps {
     }
 
     public void calcularDiferencia() {
-        float min temperaturas[0];
-        float max temperaturas[0];
+        float min = temperaturas[0];
+        float max = temperaturas[0];
         for (int i = 1; i < numTemps; i++) {
             if (temperaturas[i] < min) 
                 min = temperaturas[i];
