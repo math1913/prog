@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class registroTemps {
 
     private static final int MAX_SEM = 52;

@@ -19,6 +19,7 @@ public class Ejercicio4 {
             }
             System.out.print(vector[i] + " ");
         }
-        System.out.println("Según el algoritmo de segundo menor: " + segMenor);
+        System.out.println();
+        System.out.println("Segundo menor: " + segMenor);
     }
 }
