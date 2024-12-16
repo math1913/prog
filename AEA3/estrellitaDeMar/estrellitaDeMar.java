@@ -1,13 +1,24 @@
+import java.util.Scanner;
 public class estrellitaDeMar {
     //Te queremos marina
+    private boolean fin = false;
     public static void main(String[] args) {
         estrellitaDeMar programa = new estrellitaDeMar();
-        programa.imprimir('*', 7);
-        programa.imprimir('-',1);
-        programa.imprimir('5', 6);
-        programa.imprimir('*', 3);
-        programa.imprimir('-', 5);
-        programa.imprimir('3',2);
+        programa.iniciar();
+    }
+    public void iniciar() {
+        Scanner sc = new Scanner(System.in);
+        while(!fin) {
+            System.out.println("Que caracter quieres imprimir?");
+            char car = sc.next().charAt(0);
+            System.out.println("Cuantas veces?");
+            int cant = sc.nextInt();
+            imprimir(car, cant);
+            System.out.println("¿Quieres continuar? (Si/No)");
+            String resp = sc.next();
+            if (resp.equals("No"))
+                fin = true;
+        }
     }
     public void imprimir(char car, int cant) {
         for (int i = 0; i < cant; i++)
