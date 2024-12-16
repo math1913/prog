@@ -1,4 +1,4 @@
-    public class estrellitaDeMar {
+public class estrellitaDeMar {
     public static void main(String[] args) {
         estrellitaDeMar programa = new estrellitaDeMar();
         programa.estrellas(7);
