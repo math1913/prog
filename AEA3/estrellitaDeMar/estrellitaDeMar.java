@@ -1,6 +1,4 @@
-import java.util.Scanner;
-
-public class estrellitaDeMar {
+    public class estrellitaDeMar {
     public static void main(String[] args) {
         estrellitaDeMar programa = new estrellitaDeMar();
         programa.estrellas(7);
@@ -10,7 +8,6 @@ public class estrellitaDeMar {
         programa.guiones(5);
         programa.numeros(3,2);
     }
-    
     public void estrellas(int cant){
         for (int i = 0; i < cant; i++){
             System.out.print("*");
