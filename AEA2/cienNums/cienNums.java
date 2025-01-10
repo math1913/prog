@@ -5,8 +5,7 @@ public class cienNums {
         for (int i = 0; i < array.length; i++) {
             array[i] = par;
             par = par + 2;
+            System.out.print(array[i] + " ");
         }
-        for (int j = 0; j < array.length; j++) 
-            System.out.print(array[j] + " ");
     }
 }
