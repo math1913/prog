@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class estrellitaDeMar {
-    //Te queremos marina
+    //Te queremos marina. lovU
     private boolean fin = false;
     public static void main(String[] args) {
         estrellitaDeMar programa = new estrellitaDeMar();

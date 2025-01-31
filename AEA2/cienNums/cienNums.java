@@ -1,26 +1,19 @@
+import java.util.Scanner;
 public class cienNums {
     public static void main(String[] args) {
-        int[][] pares = new int[10][10];
-        //int[] impares = new int[100];
-        //int[] suma = new int[100];
-        //int j = suma.length - 1;
-        int num = 0;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("¿Cuantas filas quieres que tenga la matriz?");
+        int filas = sc.nextInt();
+        System.out.println("¿Cuantas columnas quieres que tenga la matriz?");
+        int columnas = sc.nextInt();    
+        char[][] pares = new char[filas][columnas];
         for (int i = 0; i < pares.length; i++) {
             for (int j = 0; j < pares[i].length; j++) {
-                pares[i][j] = num * 2;
-                num++;
-                System.out.print(pares[i][j] + " ");
+                if (j<=i)
+                    pares[i][j] = 'x';
+                System.out.print(pares[i][j]);
             }
             System.out.println();
-            
-
-
-            /*
-            impares[j] = j * 2 + 1;
-            suma[i] = pares[i] + impares[j];
-            System.out.print(suma[i] + " ");
-            j --;
-            */
         }
     }
 }
