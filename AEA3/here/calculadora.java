@@ -2,13 +2,18 @@ package AEA3.here;
 import java.util.Scanner;
 public class calculadora {
     Scanner lector = new Scanner(System.in);
+	errores control = new errores();
     public void area(int num) {
 		if (num == 1){
 			System.out.print("Ingrese la base del triangulo: ");
-			double base = lector.nextFloat();
-			System.out.print("Ingrese la altura del triangulo: ");
-			double altura = lector.nextFloat();
-			System.out.println(base * altura / 2);
+			if(lector.hasNextDouble()){
+				double base = lector.nextDouble();
+				System.out.print("Ingrese la altura del triangulo: ");
+				double altura = lector.nextDouble();
+				System.out.println(base * altura / 2);
+			}else
+				control.error(2);
+
 		}
 		else if (num == 2){
 			System.out.print("Ingrese el radio del circulo: ");
