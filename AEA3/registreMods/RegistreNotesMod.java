@@ -1,9 +1,10 @@
-package AEA3;
+package AEA3.registreMods;
 
 import AEA3.utils.minMaxMid;
 import AEA3.utils.LectorDatosTerminal;
 
 public class RegistreNotesMod {
+  
   public static void main(String[] args) {
     LectorDatosTerminal lector = new LectorDatosTerminal();
     minMaxMid calculador = new minMaxMid();
