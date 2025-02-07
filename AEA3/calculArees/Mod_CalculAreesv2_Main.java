@@ -3,6 +3,7 @@ package AEA3.calculArees;
 import java.util.Scanner;
 
 import AEA3.utils.LectorDatosTerminal;
+import AEA3.utils.Mod_CalculAreesv2;
 
 public class Mod_CalculAreesv2_Main {
     public static void main(String[] args) {

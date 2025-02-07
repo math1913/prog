@@ -1,5 +1,5 @@
-package AEA3.calculArees;   
-public class Mod_CalculAreesv2 {
+package AEA3.utils;   
+public class calcAreas {
 
     public double triangle(double base, double altura){
         return (base * altura)/2;
