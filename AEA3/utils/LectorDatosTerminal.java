@@ -27,5 +27,17 @@ public class LectorDatosTerminal {
         }
         return 0;
     }
-
+    public char leerChar(){
+        boolean noleido = true;
+        char ch = s.next().charAt(0);
+        while(noleido) {
+            if (Character.isLetter(ch)) {
+                noleido = false;
+                return ch;
+            } else {
+                s.next();
+            }
+        }
+        return '0';
+    }
 }
