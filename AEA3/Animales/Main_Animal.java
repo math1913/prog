@@ -1,4 +1,4 @@
-package AEA3.Herencia;
+package AEA3.Animales;
 
 public class Main_Animal {
     public static void main(String[] args) {

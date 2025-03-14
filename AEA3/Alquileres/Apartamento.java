@@ -5,8 +5,7 @@ public class Apartamento extends Alquiler {
     private boolean cocina;
 
     public Apartamento(String nombre, int capacidad, int hab, boolean cocina){
-        this.setNombre(nombre);
-        this.setCapacidad(capacidad);
+        super(nombre, capacidad);
         this.setHab(hab);
         this.setCocina(cocina);
     }

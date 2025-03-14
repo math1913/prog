@@ -3,9 +3,7 @@ package AEA3.Alquileres;
 public class Habitacion extends Alquiler {
     private int numCamas;
     public Habitacion(String nombre, int capacidad, int numCamas){
-        this.setDisp(true);
-        this.setNombre(nombre);
-        this.setCapacidad(capacidad);
+        super(nombre, capacidad);
         this.setNumCamas(numCamas);
     }
     

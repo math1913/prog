@@ -12,6 +12,7 @@ public class MainAlquiler {
         Alquiler[] alq = new Alquiler[cant];
         String nombre;
         int capacidad;
+        //for para guardar los distintos alojamientos en el vector ( arreglo )
         for (int i = 0; i < cant; i++) {
             System.out.println("Que tipo de alquiler quieres registrar?");
             String tipo = s.nextLine().trim().toLowerCase();
@@ -58,7 +59,8 @@ public class MainAlquiler {
             System.out.println("1. Mostrar allotjaments disponibles");
             System.out.println("2. Reservar allotjament");
             System.out.println("3. Alliberar allotjament");
-            System.out.println("4. Sortir");
+            System.out.println("4. Buscar con filtros");
+            System.out.println("5. Sortir");
             System.out.print("Tria una opció: ");
             opcion = sc.leerInt();
 
@@ -85,8 +87,58 @@ public class MainAlquiler {
                         if (alq[i].getNombre().equalsIgnoreCase(nom))
                             alq[i].liberar();
                     break;
+                case 4:
+                    System.out.println("Que tipo de alquiler quieres buscar?");
+                    String tipo = s.nextLine().trim().toLowerCase();
+                    int max;
+                    int numPersonas;
+                    switch (tipo) {
+                        case "habitacion":
+                            System.out.println("Introdue el máximo de precio por noche: ");
+                            max = sc.leerInt();
+                            System.out.println("Para cuantas personas?");
+                            numPersonas = sc.leerInt();
+                        for (int i = 0; i < alq.length; i++)
+                            if (alq[i].getClass().equals(Habitacion.class)){
+                                Habitacion h = (Habitacion) alq[i];
+                                if (h.costeNoche(numPersonas) <= max)
+                                    h.mostrarInformacio();
+                            }
+                        break;
+                        case "apartamento":
+                            System.out.println("Introdue el máximo de precio por noche: ");
+                            max = sc.leerInt();
+                            System.out.println("Quieres que tenga cocina? (Y/N)");
+                            boolean cocina = (s.nextLine().equalsIgnoreCase("Y"));
+                            System.out.println("Para cuantas personas?");
+                            numPersonas = sc.leerInt();
+                            for (int i = 0; i < alq.length; i++)
+                                if (alq[i].getClass().equals(Apartamento.class)){
+                                    Apartamento a = (Apartamento) alq[i];
+                                    if (a.costeNoche(numPersonas) <= max && a.getCocina() == cocina)
+                                        a.mostrarInformacio();
+                                }
+                            break;
+                        case "casa rural":
+                            System.out.println("Introdue el máximo de precio por noche: ");
+                            max = sc.leerInt();
+                            System.out.println("Para cuantas personas?");
+                            numPersonas = sc.leerInt();
+                            System.out.println("Quieres que tenga piscina? (Y/N)");
+                            boolean piscina = (s.nextLine().equalsIgnoreCase("Y"));
+                            System.out.println("Quieres que tenga jardin? (Y/N)");
+                            boolean jardin = (s.nextLine().equalsIgnoreCase("Y"));
+                            for (int i = 0; i < alq.length; i++)
+                                if (alq[i].getClass().equals(CasaRural.class)){
+                                    CasaRural cR = (CasaRural) alq[i];
+                                    if (cR.costeNoche(numPersonas) <= max && cR.getPiscina() == piscina && cR.getJardin() == jardin)
+                                        cR.mostrarInformacio();
+                                }
+                            break;
+                        }
+                        break;
             }
-        } while (opcion != 4);
+        } while (opcion != 5);
     }
 }
 

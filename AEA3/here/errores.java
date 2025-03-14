@@ -1,5 +1,4 @@
 package AEA3.here;
-import java.util.Scanner;
 
 public class errores {
     public void error(int num) {

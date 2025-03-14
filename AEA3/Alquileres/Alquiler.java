@@ -5,6 +5,12 @@ public class Alquiler {
     private int capacidad;
     private boolean disp;
 
+    Alquiler(String nombre, int capacidad){
+        this.nombre = nombre;
+        this.capacidad = capacidad;
+        this.disp = true;
+    }
+
     public String getNombre() {
         return this.nombre;
     }
@@ -32,6 +38,7 @@ public class Alquiler {
         System.out.println(this.getNombre());
         System.out.println("Capacidad: " + this.getCapacidad());
         System.out.println("Disponible: " + this.getDisp());
+        System.out.println("Coste de noche: " + costeNoche(capacidad));
     }
 
     public void reservar() {

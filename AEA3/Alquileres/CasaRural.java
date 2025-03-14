@@ -5,9 +5,7 @@ public class CasaRural extends Alquiler {
     private boolean jardin;
 
     CasaRural(String nombre, int capacidad, boolean piscina, boolean jardin){
-        this.setDisp(true);
-        this.setNombre(nombre);
-        this.setCapacidad(capacidad);
+        super(nombre, capacidad);
         this.setPiscina(piscina);
         this.setJardin(jardin);
     }
