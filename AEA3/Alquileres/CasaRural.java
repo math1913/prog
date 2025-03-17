@@ -27,7 +27,7 @@ public class CasaRural extends Alquiler {
     }
 
     @Override
-    public double costeNoche(int numPersones) {
+    public double costeNoche() {
         if (piscina)
             return 200;
         else

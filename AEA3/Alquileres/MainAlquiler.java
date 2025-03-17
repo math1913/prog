@@ -101,7 +101,7 @@ public class MainAlquiler {
                         for (int i = 0; i < alq.length; i++)
                             if (alq[i].getClass().equals(Habitacion.class)){
                                 Habitacion h = (Habitacion) alq[i];
-                                if (h.costeNoche(numPersonas) <= max)
+                                if (h.costeNoche() <= max)
                                     h.mostrarInformacio();
                             }
                         break;
@@ -115,7 +115,7 @@ public class MainAlquiler {
                             for (int i = 0; i < alq.length; i++)
                                 if (alq[i].getClass().equals(Apartamento.class)){
                                     Apartamento a = (Apartamento) alq[i];
-                                    if (a.costeNoche(numPersonas) <= max && a.getCocina() == cocina)
+                                    if (a.costeNoche() <= max && a.getCocina() == cocina)
                                         a.mostrarInformacio();
                                 }
                             break;

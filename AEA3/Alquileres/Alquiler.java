@@ -30,7 +30,7 @@ public class Alquiler {
         this.disp = disp;
     }
 
-    public double costeNoche(int numPersones) {
+    public double costeNoche() {
         return 0;
     }
 

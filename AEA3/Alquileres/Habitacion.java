@@ -14,11 +14,11 @@ public class Habitacion extends Alquiler {
         this.numCamas = numCamas;
     }
     @Override
-    public double costeNoche(int numPersones) {
+    public double costeNoche() {
         if (numCamas < 3)
             return 50;
         else
-            return 50 + (numCamas -3) * 20;
+            return 50 + (numCamas - 3) * 20;
     }
 
     @Override

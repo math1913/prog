@@ -27,7 +27,7 @@ public class Apartamento extends Alquiler {
     }
     
     @Override
-    public double costeNoche(int numPersones) {
+    public double costeNoche() {
         return 100 + (hab * 10);
     }
 
