@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Funciones {
@@ -47,7 +48,7 @@ public class Funciones {
                     break;
     
                 case "casa rural":
-                    System.out.println("Introdueix el nom: ");
+                    System.out.println("Introdueix al nom:");
                     nombre = sc.nextLine();
                     System.out.println("Introdueix la capacitat: ");
                     capacidad = sc.nextInt();
@@ -56,7 +57,7 @@ public class Funciones {
                     boolean piscina = (sc.nextLine().equalsIgnoreCase("Y"));
                     System.out.println("Té jardí? (Y/N)");
                     boolean jardin = (sc.nextLine().equalsIgnoreCase("Y"));
-                    alq[i] = new CasaRural(nombre, capacidad, piscina, jardin);
+                    alq[i] = new CasaRural(nombre, capacidad, jardin, piscina);
                     break;
     
                 default:
@@ -70,11 +71,19 @@ public class Funciones {
     public void reservar(Allotjament[] alq){
         System.out.println("Digues el nom del allotjament que vols reservar");
         apartamentAReservar = sc.nextLine();
+        System.out.println("Cuantes nits vols reservar?");
+        int numNits = sc.nextInt();
         for (int i =0; i < alq.length; i++)
             if (alq[i].getNom().toLowerCase().equalsIgnoreCase(apartamentAReservar))
                 if (alq[i].isDisponible()){
-                    alq[i].setDisponible(false);
-                    System.out.println("Reserva completada a l'allotjament " + alq[i].getNom() + " correctament! Gràcies!");
+                    double precioTotal = alq[i].calcularPreuPerNit() * numNits;
+                    System.out.println("El precio total es de " + precioTotal + " euros, quieres confirmar la reserva? (Y/N)");
+                    sc.nextLine();
+                    if (sc.nextLine().toLowerCase().equalsIgnoreCase("y")){
+                        alq[i].setDisponible(false);
+                        System.out.println("Reserva completada a l'allotjament " + alq[i].getNom() + " correctament! Gràcies!");
+                    }else
+                        System.out.println("Reserva no confirmada, no s'ha reservat el allotjament " + alq[i].getNom() + ".");
                 } else
                     System.out.println("L'allotjament " + alq[i].getNom() + " no està disponible per reservar.");
     }
@@ -96,10 +105,15 @@ public class Funciones {
         System.out.println("Quin tipus de lloguer vols buscar?");
         String tipo = sc.nextLine().trim().toLowerCase();
         int max;
+        String orden;
         switch (tipo) {
             case "habitacio":
                 System.out.println("Introdueix el màxim preu per nit: ");
                 max = sc.nextInt();
+                System.out.println("Vols ordenar el preu de forma ascendent o descendent? ");
+                sc.nextLine();
+                orden = sc.nextLine();
+                alq = ordenar(orden, alq);
                 for (int i = 0; i < alq.length; i++)
                     if (alq[i].getClass().equals(Habitacio.class)){
                         Habitacio h = (Habitacio) alq[i];
@@ -113,6 +127,10 @@ public class Funciones {
                 System.out.println("Vols que tingui cuina? (Y/N)");
                 sc.nextLine();
                 boolean cocina = (sc.nextLine().equalsIgnoreCase("Y"));
+                System.out.println("Vols ordenar el preu de forma ascendent o descendent? ");
+                sc.nextLine();
+                orden = sc.nextLine();
+                alq = ordenar(orden, alq);
                 for (int i = 0; i < alq.length; i++)
                     if (alq[i].getClass().equals(Apartament.class)){
                         Apartament a = (Apartament) alq[i];
@@ -128,6 +146,10 @@ public class Funciones {
                 boolean piscina = (sc.nextLine().equalsIgnoreCase("Y"));
                 System.out.println("Vols que tingui jardí? (Y/N)");
                 boolean jardin = (sc.nextLine().equalsIgnoreCase("Y"));
+                System.out.println("Vols ordenar el preu de forma ascendent o descendent? ");
+                sc.nextLine();
+                orden = sc.nextLine();
+                alq = ordenar(orden, alq);
                 for (int i = 0; i < alq.length; i++)
                     if (alq[i].getClass().equals(CasaRural.class)){
                         CasaRural cR = (CasaRural) alq[i];
@@ -136,5 +158,28 @@ public class Funciones {
                     }
                 break;
         }
+    }
+
+    public Allotjament[] ordenar(String orden, Allotjament[] alq){
+        double[] precios = new double[alq.length];
+        Allotjament[] res = new Allotjament[alq.length];
+        for (int i = 0; i < alq.length; i++)
+            precios[i] = alq[i].calcularPreuPerNit();
+        Arrays.sort(precios);
+
+        for (int i = 0; i < alq.length; i++)
+            for (int j = 0; j < alq.length; j++)
+                if (precios[i] == alq[j].calcularPreuPerNit())
+                    res[i] = alq[j];
+
+        if (orden.equalsIgnoreCase("descendent")){
+            Allotjament aux;
+            for (int i = 0; i < res.length/ 2; i++){
+                aux = res[i];
+                res[i] = res[res.length - 1 - i];
+                res[res.length - 1 - i] = aux;
+            }
+        }
+        return res;
     }
 }

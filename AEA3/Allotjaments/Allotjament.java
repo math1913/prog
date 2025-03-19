@@ -50,7 +50,6 @@ public abstract class Allotjament{
         System.out.println("--------------------------------------------------------------------------------");
 
     }
-
     public boolean reservar(){
         return true;
     }
