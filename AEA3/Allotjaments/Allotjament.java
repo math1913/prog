@@ -1,4 +1,3 @@
-import java.nio.channels.Pipe.SourceChannel;
 
 public abstract class Allotjament{
 
@@ -48,8 +47,8 @@ public abstract class Allotjament{
         else
             System.out.println(" - No disponible");
         System.out.println("--------------------------------------------------------------------------------");
-
     }
+    
     public boolean reservar(){
         return true;
     }
