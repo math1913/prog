@@ -7,6 +7,7 @@ public class Funcions{
         System.out.println(f.sumarial(4));
         System.out.println(f.potencia(2,3));
         System.out.println(f.invertirString("Hola marina", ""));
+        System.out.println(f.contarDigitos(12345));
     }
 
     public int sumarial(int num){
@@ -31,5 +32,11 @@ public class Funcions{
             res = res.concat(str.substring(0, 1));
             return res;
         }
+    }
+
+    public int contarDigitos(int num){
+        if (num < 10)
+            return 1;
+        else return contarDigitos(num/10) + 1;
     }
 }
