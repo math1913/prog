@@ -1,4 +1,4 @@
-public abstract class Player { 
-    public abstract String makeGuess();
+public abstract class Player {
+    public abstract char[] makeGuess();
     
 }

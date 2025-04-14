@@ -1,32 +1,41 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Feedback {
-    public String generarPista(String s, String r) {
-        String res = "";
-        for (int i = 0; i < s.length(); i++) {
-            char charSecret = s.charAt(i);
-            char charResposta = r.charAt(i);
-            if (charSecret == charResposta) {
-                res += MasterMain.TOT_CORRECTE;
-            } else if (s.indexOf(charResposta) != -1) {
-                res += MasterMain.MALA_POSICIO;
+
+    public char[] generarPista(char[] code, char[] intento) {
+        char[] res = new char[Game.LONG_SECRET];
+        for (int i = 0; i < res.length; i++) {
+            if (code[i] == intento[i]) {
+                res[i] = MasterMain.TOT_CORRECTE;
+            } else if (esta(code, intento[i])) {
+                res[i] = MasterMain.MALA_POSICIO;
             } else {
-                res += MasterMain.INCORRECTE;
+                res[i] = MasterMain.INCORRECTE;
             }
         }
         return res;
     }
+    public boolean esta(char[] code, char valor){
+        for(int i = 0; i < Game.LONG_SECRET; i++)
+            if( code[i] == valor)
+                return true;
+        return false;
+    }
 
-    public boolean getFeedback(String secret, String resposta) {
-        String res = generarPista(secret, resposta);
-        boolean fi = false;
-        System.out.print("La resposta és [" + res + "].");
-        if (resposta.equals(secret)) {
-            System.out.println("Has encertat!");
-            fi = true;
+    public boolean getFeedback(char[] secret, char[] resposta) {
+        char[] feedback = generarPista(secret, resposta);
+        System.out.print("FeedBack: [ ");
+        for(int i = 0; i < feedback.length; i++)
+            System.out.print(feedback[i]);
+        System.out.println( "].");
+
+        if (Arrays.equals(secret, resposta)) {
+            System.out.println("Correcto! Has ganado!");
+            return true;
         } else {
-            System.out.println("Continua intentan!");
+            System.out.println("Incorrecto!");
+            return false;
         }
-        return fi;
     }
 }

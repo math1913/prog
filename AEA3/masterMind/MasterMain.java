@@ -2,26 +2,18 @@ import java.util.Scanner;
 
 //Un programa per jugar al MasterMind.
 public class MasterMain {
+
     //Constants
     public final static char TOT_CORRECTE = '0';
     public final static char MALA_POSICIO = 'X';
     public final static char INCORRECTE = '-';
-    public final static String ENCERTAT = "OOO";
-    public final static int LONG_SECRET = 3;
-    public static String secret = "";
-    public static String resposta = "";
-    public static String abc = "abcdefghijklmnopqrstuvwxyz";
+    public static char[] abc = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
     
     //Mètodes associats al problema general
     public static void main(String[] args) {
-        CodeGenerator codigo = new CodeGenerator();
-        String secret = codigo.generateCode();
-        boolean encertat = false;
-        Feedback feed = new Feedback();
-        HumanPlayer player = new HumanPlayer();
-        while (!encertat) {
-            resposta = player.makeGuess();
-            encertat = feed.getFeedback(secret, resposta);
-        }
+        Scanner sc = new Scanner(System.in);
+        System.out.println("En que dificultad quieres jugar?\n1. Adulto\n2. Niño");
+        Game juego = new Game(sc.nextInt());
+        juego.jugar();
     }   
 }

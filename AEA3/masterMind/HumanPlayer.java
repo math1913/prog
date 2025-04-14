@@ -1,33 +1,35 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class HumanPlayer extends Player{
     
     @Override
-    public String makeGuess() {
+    public char[] makeGuess() {
         Scanner lector = new Scanner(System.in);
         boolean lecturaOk = false;
-        String res = null;
+        char[] res = new char[Game.LONG_SECRET];
+        
+        String st;
         do {
-            System.out.print("Escriu " + MasterMain.LONG_SECRET + " lletres miníscules: ");
-            res = lector.next();
+            System.out.print("Escriu " + Game.LONG_SECRET + " lletres miníscules: ");
+            st = lector.next();
             lector.nextLine();
             lecturaOk = comprovarResposta(res);
             if (!lecturaOk) {
                 System.out.println("Aquesta resposta no és vàlida!");
             }
         } while (!lecturaOk);
+        res = st.toCharArray();
         return res;
     }
-    public boolean comprovarResposta(String resposta) {
-        if (resposta.length() != MasterMain.LONG_SECRET) {
+    
+    public boolean comprovarResposta(char[] resposta) {
+        if (resposta.length != Game.LONG_SECRET)
             return false;
-        }
-        for (int i = 0; i < resposta.length(); i++) {
-            char c = resposta.charAt(i);
-            if (-1 == MasterMain.abc.indexOf(c)) {
+        Feedback f = new Feedback();
+        for (int i = 0; i < resposta.length; i++)
+            if (!f.esta(resposta, resposta[i]))
                 return false;
-            }
-        }
         return true;
     }
 } 
