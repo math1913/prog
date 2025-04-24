@@ -35,10 +35,14 @@ public class Game {
         while(!fin){
             if (turno){ //humano
                 resposta = player.makeGuess();
+                robot.actualizarPosiciones(resposta);
                 fin = feed.getFeedback(this.code, resposta);
             }else{
                 System.out.print("Intento de GEPETO: ");
                 resposta = robot.makeGuess();
+                for(int i = 0;  i < this.LONG_SECRET; i++)
+                    System.out.print(resposta[i]);
+                System.out.println();
                 fin = feed.getFeedback(this.code, resposta);
             }
             turno = !turno;

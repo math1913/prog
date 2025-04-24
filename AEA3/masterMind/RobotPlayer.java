@@ -13,8 +13,13 @@ public class RobotPlayer extends Player{
 
     public RobotPlayer(char[] code){
         this.code = code;
-        for(int i = 0; i < MasterMain.abc.length; i++)
-            mapa.put(MasterMain.abc[i], new boolean[] {false, false, false}); //guardo todas las letras con todas las posiciones disponibles
+        
+        for(int i = 0; i < MasterMain.abc.length; i++){
+            boolean[] pos = new boolean[Game.LONG_SECRET];//vector con las posiciones disponibles de dicha letra
+            for (int j = 0; j < Game.LONG_SECRET; j++)
+                pos[j] = true;
+            mapa.put(MasterMain.abc[i], pos); //guardo todas las letras con todas las posiciones disponibles
+        }
         for(int i = 0; i < Game.LONG_SECRET; i++)
             this.sol[i] = '%';
     }
@@ -26,10 +31,11 @@ public class RobotPlayer extends Player{
         //solo nos sirve si el random generado, en esa clave del mapa tiene la pocision esta libre, sino i--
         int random;
         for (int i = 0; i < Game.LONG_SECRET; i++){
-            if(sol[i] == '%'){
+            if(this.sol[i] == '%'){
                 random = rand.nextInt(26);//random entre 0 y 26
-                if (mapa.get(MasterMain.abc[random])[i])
-                    res[i] = MasterMain.abc[random]; 
+                if (mapa.get(MasterMain.abc[random])[i]){// entra si la pos esta disp
+                    res[i] = MasterMain.abc[random];
+                }
                 else
                     i--;
             }else
@@ -37,10 +43,15 @@ public class RobotPlayer extends Player{
         }
 
         //antes de retornar guardo las x y - en el mapa, las 0 en el vector solucion
+        actualizarPosiciones(res);
+        return res;
+    }
+
+    public  void actualizarPosiciones(char[] res){
         char[] retroalimentacion = f.generarPista(res, this.code);
         for(int i = 0; i < Game.LONG_SECRET; i++){
             if(retroalimentacion[i] == '-'){
-                for(int j = 0; j < 3; i++)
+                for(int j = 0; j < Game.LONG_SECRET; j++)
                     mapa.get(res[i])[j] = false;
             }
             else if (retroalimentacion[i] == 'X'){
@@ -50,6 +61,5 @@ public class RobotPlayer extends Player{
                 sol[i] = res[i];
             }
         }
-        return res;
     }
 }
