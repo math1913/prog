@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Feedback {
 
     public char[] generarPista(char[] code, char[] intento) {
+        System.out.println("funcion generarpista");
         char[] res = new char[Game.LONG_SECRET];
         for (int i = 0; i < res.length; i++) {
             if (code[i] == intento[i]) {
@@ -24,8 +25,9 @@ public class Feedback {
     }
 
     public boolean getFeedback(char[] secret, char[] resposta) {
+        System.out.println("funcion getfeed:");
         char[] feedback = generarPista(secret, resposta);
-        System.out.print("FeedBack: [ ");
+        System.out.print("FeedBack: [");
         for(int i = 0; i < feedback.length; i++)
             System.out.print(feedback[i]);
         System.out.println( "].");

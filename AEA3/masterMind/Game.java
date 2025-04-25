@@ -35,7 +35,7 @@ public class Game {
         while(!fin){
             if (turno){ //humano
                 resposta = player.makeGuess();
-                robot.actualizarPosiciones(resposta);
+                //robot.actualizarPosiciones(resposta);// le tenemos q pasar el vector feedback no este
                 fin = feed.getFeedback(this.code, resposta);
             }else{
                 System.out.print("Intento de GEPETO: ");
